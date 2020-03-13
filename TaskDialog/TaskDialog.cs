@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Interop;
 using System.Windows.Media;
 
 namespace TaskDialogInterop
@@ -640,7 +641,17 @@ namespace TaskDialogInterop
 			int? commandButtonResult = null;
 			int? customButtonResult = null;
 
-			diagResult = vtd.Show((vtd.CanBeMinimized ? null : options.Owner), out verificationChecked, out radioButtonResult);
+			//diagResult = vtd.Show((vtd.CanBeMinimized ? null : options.Owner), out verificationChecked, out radioButtonResult);
+
+            IntPtr ownerHandle = options.OwnerHandle;
+
+            if (options.Owner != null)
+            {
+                WindowInteropHelper helper = new WindowInteropHelper(options.Owner);
+                ownerHandle = helper.Owner;
+            }
+			diagResult = vtd.Show((vtd.CanBeMinimized ? IntPtr.Zero : ownerHandle), out verificationChecked, out radioButtonResult);
+
 
 			if (diagResult >= CommandButtonIDOffset)
 			{

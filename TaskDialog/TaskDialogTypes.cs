@@ -70,6 +70,11 @@ namespace TaskDialogInterop
 		/// The owner window of the task dialog box.
 		/// </summary>
 		public System.Windows.Window Owner;
+
+		/// <summary>
+		/// The owner window handle
+		/// </summary>
+        public IntPtr OwnerHandle;
 		/// <summary>
 		/// Caption of the window.
 		/// </summary>

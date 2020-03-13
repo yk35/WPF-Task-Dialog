@@ -112,7 +112,7 @@ namespace TaskDialogInterop
 		{
 			get
 			{
-				return (options.Owner == null) ? System.Windows.WindowStartupLocation.CenterScreen : System.Windows.WindowStartupLocation.CenterOwner;
+				return (options.Owner == null && options.OwnerHandle == IntPtr.Zero) ? System.Windows.WindowStartupLocation.CenterScreen : System.Windows.WindowStartupLocation.CenterOwner;
 			}
 		}
 		/// <summary>
